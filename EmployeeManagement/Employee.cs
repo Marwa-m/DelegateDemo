@@ -69,4 +69,42 @@ public void PromoteEmployees(List<Employee> employees, PromotionCriteria criteri
     }
 }
 
+/// <summary>
+/// Delegate for notifying promotions.
+/// </summary>
+/// <param name="employee">The employee who is being promoted.</param>
+public delegate void NotifyPromotion(Employee employee);
+
+/// <summary>
+/// Notifies the HR department about an employee's promotion.
+/// </summary>
+/// <param name="employee">The employee who is being promoted.</param>
+public void NotifyDepartments(Employee employee)
+{
+    Console.WriteLine($"{employee.Name}'s promotion is notified to HR Department.");
+}
+
+/// <summary>
+/// Notifies the manager about an employee's promotion.
+/// </summary>
+/// <param name="employee">The employee who is being promoted.</param>
+public void NotifyManager(Employee employee)
+{
+    Console.WriteLine($"{employee.Name}'s promotion is notified to the Manager.");
+}
+
+/// <summary>
+/// Executes promotion notifications for all employees in the list.
+/// </summary>
+/// <param name="employees">The list of employees to notify.</param>
+/// <param name="notifier">The delegate responsible for notifying the appropriate parties.</param>
+public void ExecutePromotionNotifications(List<Employee> employees, NotifyPromotion notifier)
+{
+    foreach (var employee in employees)
+    {
+        notifier(employee);
+    }
+}
+
+
 }

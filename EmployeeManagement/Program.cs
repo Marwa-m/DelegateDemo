@@ -25,3 +25,12 @@
             Console.WriteLine("Promoting employees with a salary greater than $75,000:");
             employeeManager.PromoteEmployees(employees, e => e.Salary > 75000);
             Console.WriteLine();
+
+           // Example 4: Multicast Delegate for Promotion Notifications
+           // Creating a multicast delegate that combines multiple notification methods.
+           Employee.NotifyPromotion notify = employeeManager.NotifyDepartments;
+        notify += employeeManager.NotifyManager;
+
+        // Executing the promotion notifications for all employees using the combined delegate.
+        employeeManager.ExecutePromotionNotifications(employees, notify);
+
